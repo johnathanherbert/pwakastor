@@ -163,17 +163,17 @@ const Main = () => {
 
   return (
     <Container>
-      <AppBar position="static" style={{ marginBottom: '20px' }}>
+      <AppBar position="static" sx={{ mb: 2 }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="logo">
           </IconButton>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: '#fff' }}>
             Pesagem - Abastecimento
           </Typography>
         </Toolbar>
       </AppBar>
 
-      <Typography variant="h4" gutterBottom style={{ marginBottom: '20px', color: '#666666' }}>
+      <Typography variant="h4" gutterBottom sx={{ color: '#333' }}>
         Gestão de Ordens
       </Typography>
       <TextField
@@ -182,28 +182,28 @@ const Main = () => {
         value={ativo}
         onChange={(e) => setAtivo(e.target.value)}
         fullWidth
-        style={{ marginBottom: '20px' }}
+        sx={{ mb: 2 }}
       />
-      <Button variant="contained" color="primary" onClick={handleAddOrdem} fullWidth style={{ marginBottom: '20px' }}>
+      <Button variant="contained" color="primary" onClick={handleAddOrdem} fullWidth sx={{ mb: 2 }}>
         Adicionar Ordem
       </Button>
 
-      <Button variant="contained" color="secondary" onClick={handleUpdateTotal} style={{ marginBottom: '20px' }}>
+      <Button variant="contained" color="secondary" onClick={handleUpdateTotal} sx={{ mb: 2 }}>
         Atualizar Tabela Total
       </Button>
 
-      <Grid container spacing={2} style={{ marginTop: '20px' }}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" gutterBottom style={{ marginBottom: '20px' }}>
+          <Typography variant="h6" sx={{ color: '#444' }}>
             Ordens Adicionadas
           </Typography>
-          <TableContainer component={Paper} style={{ marginBottom: '20px' }}>
+          <TableContainer component={Paper} sx={{ mb: 2 }}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}>Código</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Nome</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Ações</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Código</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Nome</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Ações</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -215,7 +215,7 @@ const Main = () => {
                       <Button variant="outlined" color="error" onClick={() => handleRemoveOrdem(index)}>
                         Remover
                       </Button>
-                      <Button variant="outlined" color="primary" onClick={() => handleEditOrdem(index)} style={{ marginLeft: '10px' }}>
+                      <Button variant="outlined" color="primary" onClick={() => handleEditOrdem(index)} sx={{ ml: 1 }}>
                         Editar
                       </Button>
                     </TableCell>
@@ -225,22 +225,22 @@ const Main = () => {
             </Table>
           </TableContainer>
 
-          <Typography variant="h6" gutterBottom style={{ marginBottom: '20px' }}>
+          <Typography variant="h6" sx={{ color: '#444' }}>
             Somatória de Excipientes
           </Typography>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}>Excipiente</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Quantidade Total (Kg)</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Excipiente</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Quantidade Total (Kg)</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {Object.entries(excipientes).map(([nome, { total, ordens }]) => (
                   <React.Fragment key={nome}>
                     <TableRow onClick={() => handleToggleExpandExcipient(nome)}>
-                      <TableCell>{nome}</TableCell>
+                      <TableCell sx={{ color: '#1976d2', cursor: 'pointer' }}>{nome}</TableCell>
                       <TableCell>{total.toFixed(2)} Kg</TableCell>
                     </TableRow>
                     {expandedExcipient === nome && (
@@ -276,7 +276,7 @@ const Main = () => {
 
         <Grid item xs={12} md={6}>
           <div style={{ background: '#fff', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', padding: '20px' }}>
-            <Typography variant="h6" gutterBottom style={{ marginBottom: '20px' }}>
+            <Typography variant="h6" sx={{ color: '#444' }}>
               Consumo de Excipientes
             </Typography>
             <div style={{ height: '400px' }}>
@@ -289,19 +289,19 @@ const Main = () => {
       <Dialog open={!!editingOrdem} onClose={handleCloseEdit} fullWidth maxWidth="sm">
         <DialogTitle>Editar Ordem</DialogTitle>
         <DialogContent>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" sx={{ color: '#333' }}>
             Código: {editingOrdem?.codigo}
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" sx={{ color: '#333' }}>
             Nome: {editingOrdem?.nome}
           </Typography>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}>Excipiente</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Quantidade (Kg)</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Ações</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Excipiente</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Quantidade (Kg)</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#000' }}>Ações</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -313,8 +313,6 @@ const Main = () => {
                         type="number"
                         value={value}
                         onChange={(e) => handleExcipientChange(excipient, e.target.value)}
-                        fullWidth
-                        InputProps={{ inputProps: { step: "0.01" } }}
                       />
                     </TableCell>
                     <TableCell>
