@@ -16,6 +16,13 @@ const Main = () => {
   const [editingOrdem, setEditingOrdem] = useState(null);
   const [expandedExcipient, setExpandedExcipient] = useState(null);
   const [editingExcipiente, setEditingExcipiente] = useState({});
+  
+  
+  //Colors ===== themes
+  const primaryColor = "#165979"
+  const secundaryColor = "#1E74AF"
+  const highlightCoplor = "#DFF6FF"
+  //===========================
 
   const handleAddOrdem = async () => {
     const { data, error } = await supabase
@@ -163,9 +170,9 @@ const Main = () => {
 
   return (
     <Container>
-      <AppBar position="static" sx={{ mb: 2 }}>
+      <AppBar position="static" sx={{ mb: 2, borderRadius: 2, backgroundColor: primaryColor}}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="logo">
+          <IconButton edge="start">
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1, color: '#fff' }}>
             Pesagem - Abastecimento
@@ -173,23 +180,24 @@ const Main = () => {
         </Toolbar>
       </AppBar>
 
-      <Typography variant="h4" gutterBottom sx={{ color: '#333' }}>
-        Gestão de Ordens
+      <Typography variant="h4" gutterBottom sx={{ color: '#3339', pl:1, mt:-4, mb:-4 }}>
+        <h5>Gestão de Ordens</h5>
       </Typography>
       <TextField
         label="Código Receita"
         variant="outlined"
+        type='number'
         value={ativo}
         onChange={(e) => setAtivo(e.target.value)}
         fullWidth
         sx={{ mb: 2 }}
       />
-      <Button variant="contained" color="primary" onClick={handleAddOrdem} fullWidth sx={{ mb: 2 }}>
+      <Button variant="contained" onClick={handleAddOrdem} fullWidth sx={{ mb: 1, backgroundColor: secundaryColor}}>
         Adicionar Ordem
       </Button>
 
-      <Button variant="contained" color="secondary" onClick={handleUpdateTotal} sx={{ mb: 2 }}>
-        Atualizar Tabela Total
+      <Button variant="contained" color="secondary" onClick={handleUpdateTotal} fullWidth sx={{ mb: 2, backgroundColor: primaryColor}}>
+        Atualizar Tabela
       </Button>
 
       <Grid container spacing={2}>
@@ -248,8 +256,8 @@ const Main = () => {
                         <TableCell colSpan={2}>
                           <Table>
                             <TableHead>
-                              <TableRow>
-                                <TableCell>Código Ordem</TableCell>
+                              <TableRow sx={{backgroundColor:primaryColor}}>
+                                <TableCell sx={{backgroundColor:"#3335"}}>Código Ordem</TableCell>
                                 <TableCell>Nome Ativo</TableCell>
                                 <TableCell>Quantidade (Kg)</TableCell>
                               </TableRow>
